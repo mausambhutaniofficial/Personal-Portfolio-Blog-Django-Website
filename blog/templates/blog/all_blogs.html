@@ -1,0 +1,41 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+    {% block title %}
+    <title>Blogs</title>
+    {% endblock title %}
+{% block content %}
+
+<h1 id="blogtitle" class="font-weight-bold text-center">Blog Posts</h1>
+
+<h3 class="text-center mb-5">Sarthak has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h3>
+<hr>
+{% for blog in blogs %}
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    <a href="{% url 'blog:detail' blog.id %}">
+      <h2 class="text-center">{{ blog.title }}</h2>
+    </a>
+    <img src="{{blog.image.url}}" class="img-fluid img-thumbnail mx-auto d-block" height="350" width="400">
+    <h5 class="text-muted "><i>{{ blog.date}}</i></h5>
+    <h4></h4>{{ blog.description|striptags|truncatechars:150 }} </h4>
+    <a href="{% url 'blog:detail' blog.id %}"><button type="button" class="btn btn-outline-primary btn-sm">See Blog</button></a>
+    <hr>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
